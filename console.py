@@ -81,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
                 line[1] = result.group(2)
                 print(line)
             print(line)
-            line = " ".join(line)
+        line = " ".join(line)
         print(line)
         return line
 
