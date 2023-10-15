@@ -61,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
         "Review": Review
         }
 
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
 
     def do_EOF(self, line):
         "exit"
@@ -79,14 +79,12 @@ class HBNBCommand(cmd.Cmd):
             if result:
                 line[0] = result.group(1)
                 line[1] = result.group(2)
-                print(line)
-            print(line)
+
         line = " ".join(line)
-        print(line)
         return line
 
     def do_quit(self, arg):
-        """quit out of the current session"""
+        """quit command to exit the program"""
         return True
 
     def emptyline(self):
