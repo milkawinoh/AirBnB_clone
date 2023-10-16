@@ -52,17 +52,21 @@ class TestBaseModel(unittest.TestCase):
         obj.save()
         self.assertEqual(obj.created_at, initial_created_at)
         self.assertNotEqual(obj.updated_at, initial_updated_at)
-        
+
     def test_base_model_instance(self):
+        self.base_model = BaseModel()
         self.assertIsInstance(self.base_model, BaseModel)
 
     def test_base_model_id(self):
+        self.base_model = BaseModel()
         self.assertTrue(hasattr(self.base_model, 'id'))
 
     def test_base_model_created_at(self):
+        self.base_model = BaseModel()
         self.assertTrue(hasattr(self.base_model, 'created_at'))
 
     def test_base_model_updated_at(self):
+        self.base_model = BaseModel()
         self.assertTrue(hasattr(self.base_model, 'updated_at'))
 
 if __name__ == '__main__':
