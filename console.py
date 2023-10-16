@@ -1,4 +1,11 @@
 #!/usr/bin/python3
+"""
+    This module implements a command interpreter for the Holberton
+    School AirBnB project. It allows the user to create, update,
+    and delete instances, as well as retrieve
+    information about existing instances.
+
+"""
 import cmd
 import re
 from models.base_model import BaseModel
@@ -9,14 +16,6 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
-
-"""
-    This module implements a command interpreter for the Holberton
-    School AirBnB project. It allows the user to create, update,
-    and delete instances, as well as retrieve
-    information about existing instances.
-
-"""
 
 
 class HBNBCommand(cmd.Cmd):
@@ -89,7 +88,6 @@ class HBNBCommand(cmd.Cmd):
         "pass when empty string is passed"
         pass
 
-    
     def do_create(self, arg):
         """
         Creates a new instance of BaseModel,
@@ -162,8 +160,10 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Retrieve all instances of a specified class.
         Usage: <class name>.all()
-        If no class name is provided, all instances from all classes are retrieved.
-        If the specified class does not exist, an appropriate message is displayed.
+        If no class name is provided, all instances
+        from all classes are retrieved.
+        If the specified class does not exist,
+        an appropriate message is displayed.
         Prints the string representations of the retrieved instances.
         """
         list_instances = []
@@ -178,6 +178,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             class_name = arg.split()[0]
             if class_name not in self.classes:
+                print(class_name)
                 print("** class doesn't exist **")
                 return
 
@@ -186,7 +187,6 @@ class HBNBCommand(cmd.Cmd):
                 if class_name == value.__class__.__name__:
                     list_instances.append(str(value))
             print(list_instances)
-
 
     def do_count(self, arg):
         """
