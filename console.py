@@ -64,14 +64,12 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
     def do_EOF(self, line):
-        "exit"
+        "Exit the program gracefully using EOF signal (Ctrl + D)"
+        print()
         return True
 
     def precmd(self, line):
-        """Performs functions before execution of commands
-            arguments
-        ;
-        """
+        """Performs functions before execution of commands."""
         line = line.replace("()", "").split(".")
         if len(line) != 1:
             line[0], line[1] = line[1], line[0]
@@ -91,10 +89,7 @@ class HBNBCommand(cmd.Cmd):
         "pass when empty string is passed"
         pass
 
-    def postloop(self):
-        "print newline before exit off the session"
-        print()
-
+    
     def do_create(self, arg):
         """
         Creates a new instance of BaseModel,
@@ -165,7 +160,12 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_all(self, arg):
-        """returns the dictionary __objects"""
+        """Retrieve all instances of a specified class.
+        Usage: <class name>.all()
+        If no class name is provided, all instances from all classes are retrieved.
+        If the specified class does not exist, an appropriate message is displayed.
+        Prints the string representations of the retrieved instances.
+        """
         list_instances = []
         if not arg:
             all_instances = storage.all()
@@ -186,6 +186,7 @@ class HBNBCommand(cmd.Cmd):
                 if class_name == value.__class__.__name__:
                     list_instances.append(str(value))
             print(list_instances)
+
 
     def do_count(self, arg):
         """
