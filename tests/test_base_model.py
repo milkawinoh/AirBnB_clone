@@ -3,26 +3,36 @@ import unittest
 from datetime import datetime
 from models.base_model import BaseModel
 """unittest module for testing Basemodel class"""
+
+
 class TestBaseModel(unittest.TestCase):
-    """shows several testcases for Basemodel"""
+    """shows several testcases for Basemodel
+        Class Description:
+        The class TestBaseModel is
+        a subclass of unittest.TestCase.
+        It contains various test cases
+        for checking the behaviors of
+        the BaseModel class.
+    """
 
     def test_creation(self):
-        # Test creating an instance and checking attributes
+        """Test creating an instance and checking attributes"""
         obj = BaseModel()
         self.assertIsInstance(obj.id, str)
         self.assertIsInstance(obj.created_at, datetime)
         self.assertIsInstance(obj.updated_at, datetime)
-        self.assertAlmostEqual((obj.updated_at - obj.created_at).total_seconds(), 0, places=2)
+        self.assertAlmostEqual((obj.updated_at - obj.created_at)
+                               .total_seconds(), 0, places=2)
 
     def test_save_method(self):
-        # Test the save method
+        """Test the save method"""
         obj = BaseModel()
         initial_updated_at = obj.updated_at
         obj.save()
         self.assertNotEqual(obj.updated_at, initial_updated_at)
 
     def test_to_dict_method(self):
-        # Test converting to dictionary
+        """Test converting to dictionary"""
         obj = BaseModel()
         obj_dict = obj.to_dict()
         self.assertIsInstance(obj_dict, dict)
@@ -32,20 +42,20 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn('updated_at', obj_dict)
 
     def test_string_representation(self):
-        # Test the string representation
+        """Test the string representation"""
         obj = BaseModel()
         obj_str = str(obj)
         self.assertTrue(obj_str.startswith('[BaseModel]'))
         self.assertIn(obj.id, obj_str)
 
     def test_unique_ids(self):
-        # Test multiple instances with unique IDs
+        """Test multiple instances with unique IDs"""
         obj1 = BaseModel()
         obj2 = BaseModel()
         self.assertNotEqual(obj1.id, obj2.id)
 
     def test_attribute_modification(self):
-        # Test modifying attributes
+        """ Test modifying attributes"""
         obj = BaseModel()
         initial_created_at = obj.created_at
         initial_updated_at = obj.updated_at
@@ -55,20 +65,29 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(obj.updated_at, initial_updated_at)
 
     def test_base_model_instance(self):
+        """ Checks whether an instance of BaseModel
+          is created successfully."""
         self.base_model = BaseModel()
         self.assertIsInstance(self.base_model, BaseModel)
 
     def test_base_model_id(self):
+        """verifies the presence of the 'id' attribute
+        in an instance of BaseModel."""
         self.base_model = BaseModel()
         self.assertTrue(hasattr(self.base_model, 'id'))
 
     def test_base_model_created_at(self):
+        """Verifies the presence of the
+        'created_at' attribute in an instance of BaseModel."""
         self.base_model = BaseModel()
         self.assertTrue(hasattr(self.base_model, 'created_at'))
 
     def test_base_model_updated_at(self):
+        """Verifies the presence of the
+        'updated_at' attribute in an instance of BaseModel."""
         self.base_model = BaseModel()
         self.assertTrue(hasattr(self.base_model, 'updated_at'))
+
 
 if __name__ == '__main__':
     unittest.main()
