@@ -70,14 +70,18 @@ class HBNBCommand(cmd.Cmd):
     def precmd(self, line):
         """Performs functions before execution of commands."""
         line = line.replace("()", "").split(".")
+        print(line)
         if len(line) != 1:
             line[0], line[1] = line[1], line[0]
+            print(line)
+            cmd = line[1]
             result = re.search(r'(\w+)\("([^"]*)"\)', line[0])
             if result:
                 line[0] = result.group(1)
                 line[1] = result.group(2)
-
+            line.insert(1, cmd)
         line = " ".join(line)
+        print(line)
         return line
 
     def do_quit(self, arg):
@@ -98,9 +102,9 @@ class HBNBCommand(cmd.Cmd):
             return
         class_name = arg.split()[0]
         if class_name in self.classes:
-            basemodel_instance = BaseModel()
-            basemodel_instance.save()
-            print(basemodel_instance.id)
+            instance = self.classes[class_name]()
+            instance.save()
+            print(instance.id)
         else:
             print("** class doesn't exist **")
             return
@@ -126,7 +130,6 @@ class HBNBCommand(cmd.Cmd):
 
         instance_id = args[1]
         key = "{}.{}".format(class_name, instance_id)
-        print(key)
         if key in storage.all():
             print(storage.all()[key])
         else:
@@ -169,24 +172,19 @@ class HBNBCommand(cmd.Cmd):
         list_instances = []
         if not arg:
             all_instances = storage.all()
-            if all_instances is not None:
-                list_instances.append(str(all_instances))
-                print(list_instances)
-                return
-            else:
-                return
+            print(str(list_instances))
+            return
         else:
             class_name = arg.split()[0]
             if class_name not in self.classes:
-                print(class_name)
                 print("** class doesn't exist **")
                 return
-
             all_instances = storage.all()
             for key, value in all_instances.items():
                 if class_name == value.__class__.__name__:
                     list_instances.append(str(value))
             print(list_instances)
+        return
 
     def do_count(self, arg):
         """
@@ -195,8 +193,10 @@ class HBNBCommand(cmd.Cmd):
         """
         all_instances = storage.all()
         count = 0
+        arg = arg.split()
+        class_name = arg[0]
         for key, value in all_instances.items():
-            if arg == value.__class__.__name__:
+            if class_name == value.__class__.__name__:
                 count = count + 1
         print(count)
         return
@@ -212,14 +212,17 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         class_name = args[0]
         if len(args) < 2:
+            print(len(args))
             print("** instance id missing **")
             return
         id = args[1]
         if len(args) < 3:
+            print(len(args))
             print("** attribute name missing **")
             return
         attribute_name = args[2]
         if len(args) < 4:
+            print(len(args))
             print("** value missing **")
             return
         attribute_value = args[3]
