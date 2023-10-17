@@ -3,7 +3,8 @@
 
 import uuid
 from datetime import datetime
-"""This module serves as the base model
+"""
+This module serves as the base model
 for all objects in the AirBnB project.
 It contains common attributes and methods shared by all other classes.
 """
