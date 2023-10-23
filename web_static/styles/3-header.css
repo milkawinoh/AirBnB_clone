@@ -1,0 +1,10 @@
+/* styles/3-header.css */
+
+header {
+    color: white; /* Sets the text color to white */
+    height: 70px; /* Sets the height of the header */
+    width: 100%; /* Sets the width of the header */
+    border-bottom: 1px solid #CCCCCC; /* Adds a bottom border with a specific color */
+    display: flex; /* Enables flexible box layout for the header */
+    align-items: center; /* Centers items vertically in the flex container */
+}

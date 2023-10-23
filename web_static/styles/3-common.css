@@ -1,0 +1,9 @@
+/* styles/3-common.css */
+
+body {
+    margin: 0; /* Removes the default margin */
+    padding: 0; /* Removes the default padding */
+    color: #484848; /* Sets the font color */
+    font-size: 14px; /* Sets the font size */
+    font-family: 'Circular', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; /* Sets the font family */
+}

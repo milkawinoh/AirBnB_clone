@@ -1,0 +1,11 @@
+/* styles/3-footer.css */
+
+footer {
+    color: white; /* Sets the text color to white */
+    height: 60px; /* Sets the height of the footer */
+    width: 100%; /* Sets the width of the footer */
+    border-top: 1px solid #CCCCCC; /* Adds a top border with a specific color */
+    display: flex; /* Enables flexible box layout for the footer */
+    justify-content: center; /* Centers items horizontally in the flex container */
+    align-items: center; /* Centers items vertically in the flex container */
+}
